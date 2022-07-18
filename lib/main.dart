@@ -21,12 +21,12 @@ class Greet extends StatefulWidget {
 }
 
 class _GreetState extends State<Greet> {
+  var name = "";
   @override
   Widget build(BuildContext context) {
-    var name = 'Jacob';
     return Column(
       children: [
-        Text("Hello, $name"),
+        Text("Hello $name"),
         TextField(
           onChanged: (value) => setState(() {
             name = value;
