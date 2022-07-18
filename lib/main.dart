@@ -13,13 +13,26 @@ class HelloWorld extends StatelessWidget {
   }
 }
 
-class Greet extends StatelessWidget {
+class Greet extends StatefulWidget {
   const Greet({Key? key}) : super(key: key);
 
   @override
+  State<Greet> createState() => _GreetState();
+}
+
+class _GreetState extends State<Greet> {
+  @override
   Widget build(BuildContext context) {
-    const String name = 'Flutter';
-    return const Text('Hello $name');
+    var name = 'Jacob';
+    return Column(
+      children: [
+        Text("Hello, $name"),
+        TextField(
+          onChanged: (value) => setState(() {
+            name = value;
+        }))
+    ],
+    );
   }
 }
 
@@ -48,7 +61,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
