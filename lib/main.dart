@@ -13,6 +13,16 @@ class HelloWorld extends StatelessWidget {
   }
 }
 
+class Greet extends StatelessWidget {
+  const Greet({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    const String name = 'Flutter';
+    return const Text('Hello $name');
+  }
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -45,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: HelloWorld(),
+      body: const Greet(),
     );
   }
 }
