@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'offersPage.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -70,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Image.asset('images/logo.png'),
       ),
-      body: const Greet(),
+      body: const OffersPage(),
     );
   }
 }
