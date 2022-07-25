@@ -17,14 +17,24 @@ class Offer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Center(child: Text(title, style: Theme.of(context).textTheme.headline5)),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Center(child: Text(description, style: Theme.of(context).textTheme.bodyText1)),
+    return SizedBox(
+      height: 200,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Card(
+          color: Colors.amber.shade300,
+          elevation: 7,
+          child: Column(
+            children: [
+              Center(child: Text(title, style: Theme.of(context).textTheme.headline5)),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Center(child: Text(description, style: Theme.of(context).textTheme.bodyText1)),
+              ),
+            ],
+          ),
         ),
-      ],
+      ),
     );
   }
 }
