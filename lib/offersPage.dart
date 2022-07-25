@@ -22,7 +22,7 @@ class Offer extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Card(
-          color: Colors.amber.shade300,
+          color: Colors.amber.shade50,
           elevation: 7,
           child: Container(
             decoration: const BoxDecoration(
@@ -33,10 +33,27 @@ class Offer extends StatelessWidget {
             ),
             child: Column(
               children: [
-                Center(child: Text(title, style: Theme.of(context).textTheme.headline5)),
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      color: Colors.amber.shade50,
+                      child: Text(
+                        title, 
+                        style: Theme.of(context).textTheme.headline5
+                      ),
+                    ),
+                  )
+                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Center(child: Text(description, style: Theme.of(context).textTheme.bodyText1)),
+                  child: Center(
+                    child: Container(
+                      color: Colors.amber.shade50,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(description, style: Theme.of(context).textTheme.bodyText1),
+                      ))),
                 ),
               ],
             ),
