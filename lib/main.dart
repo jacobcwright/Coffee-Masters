@@ -69,29 +69,42 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    Widget currentWidgetPage = const Text("Hello World");
+
+    switch (selectedIndex) {
+      case 0:
+        currentWidgetPage = const Text("Menu Page");
+        break;
+      case 1:
+        currentWidgetPage = const OffersPage();
+        break;
+      case 2:
+        currentWidgetPage = const Text("Orders Page");
+        break;
+    }
+
     return Scaffold(
-      appBar: AppBar(
-        title: Image.asset('images/logo.png'),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-          currentIndex: selectedIndex,
-          onTap: (newIndex) {
-            setState(() {
-              selectedIndex = newIndex;
-            });
-          },
-          backgroundColor: Theme.of(context).primaryColor,
-          selectedItemColor: Colors.amber.shade400,
-          unselectedItemColor: Colors.brown.shade50,
-          items: const [
-            BottomNavigationBarItem(label: "Menu", icon: Icon(Icons.coffee)),
-            BottomNavigationBarItem(
-                label: "Offers", icon: Icon(Icons.local_offer)),
-            BottomNavigationBarItem(
-                label: "Order",
-                icon: Icon(Icons.shopping_cart_checkout_rounded)),
-          ]),
-      body: const OffersPage(),
-    );
+        appBar: AppBar(
+          title: Image.asset('images/logo.png'),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+            currentIndex: selectedIndex,
+            onTap: (newIndex) {
+              setState(() {
+                selectedIndex = newIndex;
+              });
+            },
+            backgroundColor: Theme.of(context).primaryColor,
+            selectedItemColor: Colors.amber.shade400,
+            unselectedItemColor: Colors.brown.shade50,
+            items: const [
+              BottomNavigationBarItem(label: "Menu", icon: Icon(Icons.coffee)),
+              BottomNavigationBarItem(
+                  label: "Offers", icon: Icon(Icons.local_offer)),
+              BottomNavigationBarItem(
+                  label: "Order",
+                  icon: Icon(Icons.shopping_cart_checkout_rounded)),
+            ]),
+        body: currentWidgetPage);
   }
 }
