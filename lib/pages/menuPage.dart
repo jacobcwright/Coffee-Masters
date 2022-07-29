@@ -9,7 +9,6 @@ class MenuPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: FutureBuilder<List<Category>>(
@@ -32,18 +31,19 @@ class MenuPage extends StatelessWidget {
                           style: TextStyle(color: Colors.brown.shade400),
                         ),
                       ),
-                        ListView.builder(
-                          shrinkWrap: true,
-                          physics: const ClampingScrollPhysics(),
-                          itemCount: category.products.length,
-                          itemBuilder: (context, index) {
-                            return ProductItem(
-                              product: category.products[index],
-                              onAdd: (p) => dataManager.cartAdd(p),
-                            );
-                          },
-                        )
-                      
+                      ListView.builder(
+                        shrinkWrap: true,
+                        physics: const ClampingScrollPhysics(),
+                        itemCount: category.products.length,
+                        itemBuilder: (context, index) {
+                          return ProductItem(
+                            product: category.products[index],
+                            onAdd: (p) {
+                              dataManager.cartAdd(p);
+                            },
+                          );
+                        },
+                      )
                     ],
                   );
                 });
@@ -57,6 +57,7 @@ class MenuPage extends StatelessWidget {
     );
   }
 }
+
 class ProductItem extends StatelessWidget {
   final Product product;
   final Function onAdd;
