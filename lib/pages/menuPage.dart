@@ -8,21 +8,21 @@ class MenuPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var p = Product(1, "Dummy Product", 1.25, "");
-    var p2 = Product(2, "Dummy Product 2", 2.99, "");
-
-    return Column(
-      children: [
-        ProductItem(
-          product: p,
-          onAdd: () {},
-        ),
-        ProductItem(
-          product: p2,
-          onAdd: () {},
-        ),
-      ],
-    );
+    return FutureBuilder(builder: ((context, snapshot) {
+      if (snapshot.hasData) {
+        // has data
+        var categories = snapshot.data! as List<Category>;
+        return Text("There are ${categories.length} categories");
+      } else {
+        if (snapshot.hasError) {
+          // no data, error
+          return const Text("Error");
+        } else {
+          // no data, loading
+          return const CircularProgressIndicator();
+        }
+      }
+    }));
   }
 }
 
