@@ -19,7 +19,7 @@ class MenuPage extends StatelessWidget {
         if (snapshot.hasError) {
           // no data, error
           return const Text("Error");
-        } else {
+        } else if(snapshot.connectionState == ConnectionState.waiting) {
           // no data, loading
           return const CircularProgressIndicator();
         }

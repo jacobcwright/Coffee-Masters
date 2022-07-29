@@ -8,15 +8,21 @@ class DataManager {
   List<ItemInCart> cart = [];
 
   fetchMenu() async {
-    const url = "https://firtman.github.io/coffeemasters/api/menu.json";
-    var response = await http.get(Uri.parse(url));
+    try {
+      const url = 'https://firtman.github.io/coffeemasters/api/menu.json';
+      var response = await http.get(Uri.parse(url));
 
-    if (response.statusCode == 200) {
-      var body = response.body as dynamic;
-      var decodeData = JsonDecoder(body) as List<dynamic>;
-      for (var json in decodeData) {
-        _menu?.add(Category.fromJson(json));
+      if (response.statusCode == 200) {
+        _menu = [];
+        var decodedData = jsonDecode(response.body) as List<dynamic>;
+        for (var json in decodedData) {
+          _menu?.add(Category.fromJson(json));
+        }
+      } else {
+        throw Exception("Error loading data");
       }
+    } catch (e) {
+      throw Exception("Error loading data");
     }
   }
 
