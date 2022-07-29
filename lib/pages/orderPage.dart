@@ -3,37 +3,6 @@ import 'package:flutter/material.dart';
 import '../dataManager.dart';
 import '../dataModel.dart';
 
-class OrderPage extends StatefulWidget {
-  final DataManager dataManager;
-  const OrderPage({Key? key, required this.dataManager}) : super(key: key);
-
-  @override
-  State<OrderPage> createState() => _OrderPageState();
-}
-
-class _OrderPageState extends State<OrderPage> {
-  @override
-  Widget build(BuildContext context) {
-    if(widget.dataManager.cart.isEmpty) {
-      return const Center(
-        child: Text("No items in cart"),
-      );
-    }
-    return ListView.builder(
-        itemCount: widget.dataManager.cart.length,
-        itemBuilder: (context, index) {
-          var item = widget.dataManager.cart[index];
-          return OrderItem(
-              item: item,
-              onRemove: (product) {
-                setState(() {
-                  widget.dataManager.cartRemove(product);
-                });
-              });
-        });
-  }
-}
-
 class OrderItem extends StatelessWidget {
   final ItemInCart item;
   final Function onRemove;
@@ -77,5 +46,65 @@ class OrderItem extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class OrderPage extends StatefulWidget {
+  final DataManager dataManager;
+  const OrderPage({Key? key, required this.dataManager}) : super(key: key);
+
+  @override
+  State<OrderPage> createState() => _OrderPageState();
+}
+
+class _OrderPageState extends State<OrderPage> {
+  @override
+  Widget build(BuildContext context) {
+    if (widget.dataManager.cart.isEmpty) {
+      return const Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Text("Your order is empty"),
+      );
+    } else {
+      return Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            ListView.builder(
+                shrinkWrap: true,
+                physics: const ClampingScrollPhysics(),
+                itemCount: widget.dataManager.cart.length,
+                itemBuilder: (context, index) {
+                  var item = widget.dataManager.cart[index];
+                  return OrderItem(
+                      item: item,
+                      onRemove: (product) {
+                        setState(() {
+                          widget.dataManager.cartDelete(product);
+                        });
+                      });
+                }),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                  "Total: \$${widget.dataManager.cartTotal().toStringAsFixed(2)}"),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 28.0),
+              child: SizedBox(
+                width: 200,
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.green.shade900),
+                    onPressed: () {
+                      //TODO:
+                    },
+                    child: const Text("Send Order")),
+              ),
+            )
+          ],
+        ),
+      );
+    }
   }
 }
