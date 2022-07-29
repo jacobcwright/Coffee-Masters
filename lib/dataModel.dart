@@ -6,7 +6,11 @@ class Product {
   String get imageUrl =>
       "https://firtman.github.io/coffeemasters/api/images/$image";
 
-  Product({required this.id, required this.name, required this.price, required this.image});
+  Product(
+      {required this.id,
+      required this.name,
+      required this.price,
+      required this.image});
 
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
@@ -34,5 +38,5 @@ class ItemInCart {
   Product product;
   int quantity;
 
-  ItemInCart(this.product, this.quantity);
+  ItemInCart({required this.product, required this.quantity});
 }
