@@ -35,19 +35,20 @@ class DataManager {
 
   cartAdd(Product p) {
     bool found = false;
-    for (var i in cart) {
-      if (i.product.id == p.id) {
-        i.quantity++;
+    for (var item in cart) {
+      if (item.product.id == p.id) {
+        item.quantity++;
         found = true;
       }
-      if (!found) {
-        cart.add(ItemInCart(p, 1));
-      }
+    }
+    if (!found) {
+      cart.add(ItemInCart(product: p, quantity: 1));
     }
   }
 
-  cartRemove(Product p) {
-    cart.removeWhere((i) => i.product.id == p.id);
+
+  cartDelete(Product p) {
+    cart.removeWhere((element) => element.product.id == p.id);
   }
 
   cartClear() {
